@@ -21,6 +21,7 @@ app.get("/test", (req, res) => {
 
 app.post("/post", (req, res) => {
   const recipe = new Recipe({
+    _id: new mongoose.Types.ObjectId(),
     recipeName: req.body.recipeName,
     category: req.body.category,
     grillType: req.body.grillType,
