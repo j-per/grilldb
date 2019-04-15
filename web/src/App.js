@@ -7,7 +7,8 @@ const API_URL = `http://localhost:5000/post`;
 const headingStyle = {
   borderRadius: "5px",
   color: "#FF740A",
-  textAlign: "center"
+  textAlign: "center",
+  fontFamily: "Staatliches, cursive"
 };
 
 class App extends Component {
@@ -67,15 +68,18 @@ class App extends Component {
             }}
             className="mb-5"
           >
-            <h2
+            <h1
               style={{
                 padding: "10px 0",
                 margin: 0,
-                textAlign: "center"
+                textAlign: "center",
+                fontFamily: "Staatliches, cursive",
+                fontSize: "50px",
+                borderBottom: "5px solid white"
               }}
             >
               Grill DB
-            </h2>
+            </h1>
           </header>
           <Container>
             <Row>
@@ -89,7 +93,7 @@ class App extends Component {
                   borderRadius: "5px",
                   boxShadow: "0 0 10px black"
                 }}
-                className="p-3"
+                className="m-3 p-3"
               >
                 <h3 style={headingStyle} className="mb-3">
                   Add Recipe
@@ -178,10 +182,32 @@ class App extends Component {
                   </Button>
                 </Form>
               </Col>
-              <Col lg={4} id="recent-recipes">
+              <Col
+                lg={4}
+                id="recent-recipes"
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  background: "#d9d9d9",
+                  borderRadius: "5px",
+                  boxShadow: "0 0 10px black"
+                }}
+                className="m-3 p-3"
+              >
                 <h3 style={headingStyle}>Recent Recipes</h3>
               </Col>
-              <Col lg={4} id="search-recipes">
+              <Col
+                lg={4}
+                id="search-recipes"
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  background: "#d9d9d9",
+                  borderRadius: "5px",
+                  boxShadow: "0 0 10px black"
+                }}
+                className="m-3 p-3"
+              >
                 <h3 style={headingStyle}>Search Recipes</h3>
               </Col>
             </Row>
