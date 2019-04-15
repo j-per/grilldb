@@ -6,7 +6,16 @@ import { Container, Row, Col } from "react-bootstrap";
 const API_URL = `http://localhost:5000/post`;
 
 //Styles
-const headingStyle = {
+const h1Style = {
+  padding: "10px 0",
+  margin: 0,
+  textAlign: "center",
+  fontFamily: "Staatliches, cursive",
+  fontSize: "50px",
+  borderBottom: "5px solid white"
+};
+
+const h3Style = {
   borderRadius: "5px",
   color: "#FF740A",
   textAlign: "center",
@@ -80,23 +89,12 @@ class App extends Component {
             }}
             className="mb-5"
           >
-            <h1
-              style={{
-                padding: "10px 0",
-                margin: 0,
-                textAlign: "center",
-                fontFamily: "Staatliches, cursive",
-                fontSize: "50px",
-                borderBottom: "5px solid white"
-              }}
-            >
-              Grill DB
-            </h1>
+            <h1 style={h1Style}>Grill DB</h1>
           </header>
           <Container>
             <Row>
               <Col lg={4} id="add-recipe" style={colStyle} className="m-3 p-3">
-                <h3 style={headingStyle} className="mb-3">
+                <h3 style={h3Style} className="mb-3">
                   Add Recipe
                 </h3>
                 <Form onSubmit={this.handleSubmit}>
@@ -189,7 +187,7 @@ class App extends Component {
                 style={colStyle}
                 className="m-3 p-3"
               >
-                <h3 style={headingStyle}>Recent Recipes</h3>
+                <h3 style={h3Style}>Recent Recipes</h3>
               </Col>
               <Col
                 lg={4}
@@ -197,7 +195,7 @@ class App extends Component {
                 style={colStyle}
                 className="m-3 p-3"
               >
-                <h3 style={headingStyle}>Search Recipes</h3>
+                <h3 style={h3Style}>Search Recipes</h3>
               </Col>
             </Row>
           </Container>
