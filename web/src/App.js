@@ -4,11 +4,21 @@ import Button from "react-bootstrap/Button";
 import { Container, Row, Col } from "react-bootstrap";
 
 const API_URL = `http://localhost:5000/post`;
+
+//Styles
 const headingStyle = {
   borderRadius: "5px",
   color: "#FF740A",
   textAlign: "center",
   fontFamily: "Staatliches, cursive"
+};
+
+const colStyle = {
+  display: "flex",
+  flexDirection: "column",
+  background: "#d9d9d9",
+  borderRadius: "5px",
+  boxShadow: "0 0 10px black"
 };
 
 class App extends Component {
@@ -28,6 +38,7 @@ class App extends Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
+  //Handle submit action
   handleSubmit(e) {
     fetch(API_URL, {
       method: "POST",
@@ -52,6 +63,7 @@ class App extends Component {
     });
   }
 
+  //Handle change function
   handleChange(e) {
     this.setState({
       [e.target.name]: e.target.value
@@ -83,18 +95,7 @@ class App extends Component {
           </header>
           <Container>
             <Row>
-              <Col
-                lg={4}
-                id="add-recipe"
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  background: "#d9d9d9",
-                  borderRadius: "5px",
-                  boxShadow: "0 0 10px black"
-                }}
-                className="m-3 p-3"
-              >
+              <Col lg={4} id="add-recipe" style={colStyle} className="m-3 p-3">
                 <h3 style={headingStyle} className="mb-3">
                   Add Recipe
                 </h3>
@@ -185,13 +186,7 @@ class App extends Component {
               <Col
                 lg={4}
                 id="recent-recipes"
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  background: "#d9d9d9",
-                  borderRadius: "5px",
-                  boxShadow: "0 0 10px black"
-                }}
+                style={colStyle}
                 className="m-3 p-3"
               >
                 <h3 style={headingStyle}>Recent Recipes</h3>
@@ -199,13 +194,7 @@ class App extends Component {
               <Col
                 lg={4}
                 id="search-recipes"
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  background: "#d9d9d9",
-                  borderRadius: "5px",
-                  boxShadow: "0 0 10px black"
-                }}
+                style={colStyle}
                 className="m-3 p-3"
               >
                 <h3 style={headingStyle}>Search Recipes</h3>
