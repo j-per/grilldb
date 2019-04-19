@@ -4,6 +4,8 @@ import Button from "react-bootstrap/Button";
 import { Container, Row, Col } from "react-bootstrap";
 
 const API_URL = `http://localhost:5000/post`;
+const API_RECIPES = `http://localhost:5000/recipes`;
+const API = `http://localhost:5000`;
 
 //Styles
 const h1Style = {
@@ -77,6 +79,14 @@ class App extends Component {
     this.setState({
       [e.target.name]: e.target.value
     });
+  }
+
+  //Component Mounted
+  componentDidMount() {
+    fetch(API_RECIPES)
+      .then(response => response.json())
+      .then(json => console.log(json))
+      .catch(err => console.log(err));
   }
 
   render() {

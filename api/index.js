@@ -3,8 +3,17 @@ const cors = require("cors");
 const app = express();
 const moment = require("moment");
 const mongoose = require("mongoose");
-const Recipe = require("./models/recipe");
 const timeFormat = moment().format("L, LTS");
+
+const recipeSchema = mongoose.Schema({
+  _id: mongoose.Schema.Types.ObjectId,
+  recipeName: String,
+  category: String,
+  grillType: String,
+  hours: Number,
+  minutes: Number,
+  instructions: String
+});
 
 app.use(cors());
 app.use(express.json());
@@ -14,13 +23,19 @@ mongoose.connect("mongodb://localhost:27017/grillDB", {
   useNewUrlParser: true
 });
 
+const trying = mongoose.model("OONST", recipeSchema);
+
 //Get route
-app.get("/test", (req, res) => {
-  res.json({ hello: "world" });
+
+app.get("/recipes", (req, res) => {
+  const helloThere = mongoose.model("recipes", recipeSchema);
+  helloThere.find((err, recipe) => {
+    res.json(recipe);
+  });
 });
 
 app.post("/post", (req, res) => {
-  const recipe = new Recipe({
+  const recipe = new trying({
     _id: new mongoose.Types.ObjectId(),
     recipeName: req.body.recipeName,
     category: req.body.category,
