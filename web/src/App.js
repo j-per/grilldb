@@ -4,6 +4,7 @@ import Button from "react-bootstrap/Button";
 import { Container, Row, Col } from "react-bootstrap";
 
 const API_URL = `http://localhost:5000/post`;
+const API_GET_URL = `http://localhost:5000/test`;
 
 //Styles
 const h1Style = {
@@ -40,11 +41,13 @@ class App extends Component {
       grillType: "",
       hours: "",
       minutes: "",
-      instructions: ""
+      instructions: "",
+      recipeImage: ""
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.handleFile = this.handleFile.bind(this);
   }
 
   //Handle submit action
@@ -62,21 +65,37 @@ class App extends Component {
 
     e.preventDefault();
 
+    console.log(this.state);
+
     this.setState({
       recipeName: "",
       category: "",
       grillType: "",
       hours: "",
       minutes: "",
-      instructions: ""
+      instructions: "",
+      recipeImage: ""
     });
   }
 
+  handleFile(e) {
+    console.log(e.target.files[0]);
+    // this.setState({
+    //   recipeImage: e.target.files[0]
+    // });
+  }
   //Handle change function
   handleChange(e) {
     this.setState({
       [e.target.name]: e.target.value
     });
+  }
+
+  componentDidMount() {
+    fetch(API_GET_URL)
+      .then(res => res.json())
+      .then(json => console.log(json))
+      .catch(err => console.log(err));
   }
 
   render() {
@@ -97,7 +116,10 @@ class App extends Component {
                 <h3 style={h3Style} className="mb-3">
                   Add Recipe
                 </h3>
-                <Form onSubmit={this.handleSubmit}>
+                <Form
+                  onSubmit={this.handleSubmit}
+                  encType="multipart/form-data"
+                >
                   <Form.Label htmlFor="recipeName">Recipe Name:</Form.Label>
                   <Form.Control
                     name="recipeName"
@@ -176,6 +198,16 @@ class App extends Component {
                     onChange={this.handleChange}
                     className="mb-3"
                   />
+                  <Form.Label htmlFor="image">Image:</Form.Label>
+                  <br />
+                  <input
+                    type="file"
+                    name="recipeImage"
+                    id="recipeImage"
+                    onChange={this.handleFile}
+                    className="mb-3"
+                  />
+                  <br />
                   <Button type="submit" value="Submit" className="btn-warning">
                     Submit
                   </Button>

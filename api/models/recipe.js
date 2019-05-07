@@ -7,7 +7,8 @@ const recipeSchema = mongoose.Schema({
   grillType: String,
   hours: Number,
   minutes: Number,
-  instructions: String
+  instructions: String,
+  recipeImage: { type: String, required: true }
 });
 
 module.exports = mongoose.model("Recipe", recipeSchema);
