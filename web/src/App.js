@@ -26,8 +26,6 @@ const h3Style = {
 };
 
 const colStyle = {
-  display: "flex",
-  flexDirection: "column",
   background: "#d9d9d9",
   borderRadius: "5px",
   boxShadow: "0 0 10px black",
@@ -88,6 +86,7 @@ class App extends Component {
     }
   }
 
+  //Function to output options in select field
   timeLoop(maxNum) {
     const timeArray = [];
     for (let i = 0; i <= maxNum; i++) {
@@ -109,6 +108,7 @@ class App extends Component {
         {num}
       </option>
     ));
+
     return (
       <div className="App">
         <div className="wrapper">
@@ -232,11 +232,11 @@ class App extends Component {
                 style={colStyle}
                 className="m-3 p-3"
               >
-                <h3 style={h3Style}>Recent Recipes</h3>
+                <h3 style={h3Style}>Your Recent Recipes</h3>
                 <RecentRecipes />
               </Col>
               <Col
-                lg={4}
+                lg={2}
                 id="search-recipes"
                 style={colStyle}
                 className="m-3 p-3"
