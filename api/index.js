@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require("cors");
+const fs = require("fs");
 const app = express();
 //Time formatter
 const moment = require("moment");
@@ -53,21 +54,15 @@ app.use("/uploads", express.static("uploads"));
 //Get route
 app.get("/test", (req, res, next) => {
   Recipe.find()
-    .select("recipeName recipeImage category hours minutes")
+    .select("recipeName recipeImage category")
     .exec()
     .then(docs => {
       const response = {
-        count: docs.length,
         recipes: docs.map(recipe => {
           return {
-            recipe: recipe.recipeName,
-            category: recipe.category,
-            hours: recipe.hours,
-            minutes: recipe.minutes,
-            recipeImage: recipe.recipeImage,
-            request: {
-              type: "GET"
-            }
+            recipeName: recipe.recipeName,
+            recipeCategory: recipe.category,
+            recipeImage: `http://localhost:5000/${recipe.recipeImage}`
           };
         })
       };
@@ -76,6 +71,7 @@ app.get("/test", (req, res, next) => {
 });
 
 app.post("/post", upload.single("recipeImage"), (req, res) => {
+  console.log(req.body);
   const recipe = new Recipe({
     _id: new mongoose.Types.ObjectId(),
     recipeName: req.body.recipeName,
@@ -91,7 +87,7 @@ app.post("/post", upload.single("recipeImage"), (req, res) => {
     .then(result => console.log(result))
     .catch(err => console.log(err));
   res.status(201).json({
-    message: "Handling POST request to /post",
+    success: true,
     createdRecipe: recipe
   });
 });

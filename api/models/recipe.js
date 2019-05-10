@@ -8,7 +8,7 @@ const recipeSchema = mongoose.Schema({
   hours: Number,
   minutes: Number,
   instructions: String,
-  recipeImage: { type: String, required: true }
+  recipeImage: {}
 });
 
 module.exports = mongoose.model("Recipe", recipeSchema);

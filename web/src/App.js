@@ -2,10 +2,11 @@ import React, { Component } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { Container, Row, Col } from "react-bootstrap";
-import Axios from "axios";
+import axios from "axios";
+
+import RecentRecipes from "./components/RecentRecipes";
 
 const API_URL = `http://localhost:5000/post`;
-const API_GET_URL = `http://localhost:5000/test`;
 
 //Styles
 const h1Style = {
@@ -29,7 +30,8 @@ const colStyle = {
   flexDirection: "column",
   background: "#d9d9d9",
   borderRadius: "5px",
-  boxShadow: "0 0 10px black"
+  boxShadow: "0 0 10px black",
+  position: "relative"
 };
 
 class App extends Component {
@@ -48,48 +50,19 @@ class App extends Component {
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
-    this.handleFile = this.handleFile.bind(this);
+    this.timeLoop = this.timeLoop.bind(this);
   }
 
   //Handle submit action
   handleSubmit(e) {
     e.preventDefault();
+    const fd = new FormData();
+    const recipe = this.state;
+    for (const key in recipe) {
+      fd.append(key, recipe[key]);
+    }
 
-    const {
-      recipeName,
-      category,
-      grillType,
-      hours,
-      minutes,
-      instructions,
-      recipeImage
-    } = this.state;
-    let formData = new FormData();
-
-    formData.append("recipeName", recipeName);
-    formData.append("category", category);
-    formData.append("grillType", grillType);
-    formData.append("hours", hours);
-    formData.append("minutes", minutes);
-    formData.append("instructions", instructions);
-    formData.append("recipeImage", recipeImage);
-
-    console.log(formData);
-
-    Axios.post(API_URL, formData).then(result => {
-      console.log(result);
-    });
-
-    // fetch(API_URL, {
-    //   method: "POST",
-    //   body: JSON.stringify(this.state),
-    //   headers: {
-    //     "content-type": "application/json"
-    //   }
-    // })
-    //   .then(response => response.json())
-    //   .then(json => console.log(json))
-    //   .catch(err => console.log(err));
+    axios.post(API_URL, fd);
 
     this.setState({
       recipeName: "",
@@ -102,12 +75,6 @@ class App extends Component {
     });
   }
 
-  handleFile(e) {
-    console.log(e.target.files[0]);
-    // this.setState({
-    //   recipeImage: e.target.files[0]
-    // });
-  }
   //Handle change function
   handleChange(e) {
     switch (e.target.name) {
@@ -121,14 +88,27 @@ class App extends Component {
     }
   }
 
-  componentDidMount() {
-    fetch(API_GET_URL)
-      .then(res => res.json())
-      .then(json => console.log(json))
-      .catch(err => console.log(err));
+  timeLoop(maxNum) {
+    const timeArray = [];
+    for (let i = 0; i <= maxNum; i++) {
+      timeArray.push(i);
+    }
+    return timeArray;
   }
 
   render() {
+    const hours = this.timeLoop(20);
+    const hoursOption = hours.map(num => (
+      <option value={num} key={num}>
+        {num}
+      </option>
+    ));
+    const minutes = this.timeLoop(60);
+    const minutesOption = minutes.map(num => (
+      <option value={num} key={num}>
+        {num}
+      </option>
+    ));
     return (
       <div className="App">
         <div className="wrapper">
@@ -160,6 +140,7 @@ class App extends Component {
                     className="mb-3"
                     placeholder="Recipe Name"
                     autoComplete="off"
+                    required
                   />
                   <Form.Label htmlFor="category">Category:</Form.Label>
                   <Form.Control
@@ -169,7 +150,9 @@ class App extends Component {
                     value={this.state.category}
                     onChange={this.handleChange}
                     className="mb-3"
+                    required
                   >
+                    <option value="" default />
                     <option value="beef">Beef</option>
                     <option value="poultry">Poultry</option>
                     <option value="fish">Fish</option>
@@ -183,7 +166,9 @@ class App extends Component {
                     value={this.state.grillType}
                     onChange={this.handleChange}
                     className="mb-3"
+                    required
                   >
+                    <option value="" default />
                     <option value="kamado">Kamado</option>
                     <option value="pellet">Pellet</option>
                     <option value="charcoal">Charcoal</option>
@@ -197,12 +182,10 @@ class App extends Component {
                     value={this.state.hours}
                     onChange={this.handleChange}
                     className="mb-3"
+                    required
                   >
-                    <option value="0">0</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
+                    <option value="" default />
+                    {hoursOption}
                   </Form.Control>
                   <Form.Control
                     as="select"
@@ -211,12 +194,10 @@ class App extends Component {
                     value={this.state.minutes}
                     onChange={this.handleChange}
                     className="mb-3"
+                    required
                   >
-                    <option value="0">0</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
+                    <option value="" default />
+                    {minutesOption}
                   </Form.Control>
                   <Form.Label htmlFor="instructions">Instructions:</Form.Label>
                   <Form.Control
@@ -227,6 +208,7 @@ class App extends Component {
                     value={this.state.instructions}
                     onChange={this.handleChange}
                     className="mb-3"
+                    required
                   />
                   <Form.Label htmlFor="image">Image:</Form.Label>
                   <br />
@@ -234,8 +216,9 @@ class App extends Component {
                     type="file"
                     name="recipeImage"
                     id="recipeImage"
-                    onChange={this.handleFile}
+                    onChange={this.handleChange}
                     className="mb-3"
+                    required
                   />
                   <br />
                   <Button type="submit" value="Submit" className="btn-warning">
@@ -250,6 +233,7 @@ class App extends Component {
                 className="m-3 p-3"
               >
                 <h3 style={h3Style}>Recent Recipes</h3>
+                <RecentRecipes />
               </Col>
               <Col
                 lg={4}
