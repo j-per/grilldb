@@ -6,7 +6,7 @@ const newRecipe = require("./routes/newRecipe");
 const getRecipes = require("./routes/getRecipes");
 
 //Connect to DB
-const DB_URI = "mongodb://jesse:Test1234@ds239206.mlab.com:39206/grilldb";
+const DB_URI = "mongodb://<username>:<password>@ds239206.mlab.com:39206/grilldb";
 const DB_URI_LOCAL = "mongodb://localhost:27017/grillDB";
 mongoose.connect(DB_URI_LOCAL, {
   useNewUrlParser: true
