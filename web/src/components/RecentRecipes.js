@@ -4,7 +4,7 @@ import axios from "axios";
 import BBQ from "../images/1371591192937.jpeg";
 import placeHolderImage from "../images/placeholder.png";
 
-const API_GET_URL = `http://localhost:5000/test`;
+const API_GET_URL = `http://localhost:5000/recentRecipes`;
 
 const cardStyle = {
   display: "flex",

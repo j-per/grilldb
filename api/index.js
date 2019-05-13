@@ -1,50 +1,18 @@
 const express = require("express");
 const cors = require("cors");
-const fs = require("fs");
 const app = express();
 const mongoose = require("mongoose");
-//Multer used for multipart form data primarily used for uploading files
-const multer = require("multer");
-
-//Descirbes where and how the file upload gets stored
-const storage = multer.diskStorage({
-  destination: function(req, file, cb) {
-    cb(null, "./uploads");
-  },
-  filename: function(req, file, cb) {
-    cb(null, file.originalname);
-  }
-});
-
-//Filter that only allows jpeg and png files to be uploaded
-const fileFilter = (req, file, cb) => {
-  if (file.mimetype === "image/jpeg" || file.mimetype === "image/png") {
-    cb(null, true);
-  } else {
-    cb(null, false);
-  }
-};
-
-//Applies filters for file uploads
-const upload = multer({
-  storage: storage,
-  limits: {
-    fileSize: 1024 * 1024 * 5
-  },
-  fileFilter
-});
-
-//Mongoose model
-const Recipe = require("./models/recipe");
+const newRecipe = require("./routes/newRecipe");
+const getRecipes = require("./routes/getRecipes");
 
 //Connect to DB
-const DB_URI =
-  "mongodb://<username>:<password>@ds239206.mlab.com:39206/grilldb";
-mongoose.connect(DB_URI, {
+const DB_URI = "mongodb://jesse:Test1234@ds239206.mlab.com:39206/grilldb";
+const DB_URI_LOCAL = "mongodb://localhost:27017/grillDB";
+mongoose.connect(DB_URI_LOCAL, {
   useNewUrlParser: true
 });
 
-mongoose.connect(DB_URI);
+mongoose.connect(DB_URI_LOCAL);
 
 const conn = mongoose.connection;
 
@@ -54,52 +22,31 @@ conn.once("open", function() {
   // Wait for the database connection to establish, then start the app.
   console.log("Connected to MLAB DB");
 
-  app.post("/post", upload.single("recipeImage"), (req, res) => {
-    console.log(req.body);
-    const recipe = new Recipe({
-      _id: new mongoose.Types.ObjectId(),
-      recipeName: req.body.recipeName,
-      category: req.body.category,
-      grillType: req.body.grillType,
-      hours: req.body.hours,
-      minutes: req.body.minutes,
-      instructions: req.body.instructions,
-      recipeImage: req.file.path
-    });
-    recipe
-      .save()
-      .then(result => console.log(result))
-      .catch(err => console.log(err));
-    res.status(201).json({
-      success: true,
-      createdRecipe: recipe
-    });
+  app.use("/post", newRecipe);
+  app.use("/recentRecipes", getRecipes);
+
+  //Error handling for routes not declared
+  app.use((req, res, next) => {
+    const error = new Error("Not Found");
+    error.status = 404;
+    next(error);
   });
 
-  //Get route
-  app.get("/test", (req, res, next) => {
-    Recipe.find()
-      .select("recipeName recipeImage category")
-      .exec()
-      .then(docs => {
-        const response = {
-          recipes: docs.map(recipe => {
-            return {
-              recipeName: recipe.recipeName,
-              recipeCategory: recipe.category,
-              recipeImage: `http://localhost:5000/${recipe.recipeImage}`
-            };
-          })
-        };
-        res.status(200).json(response);
-      });
+  //Error handling for everything else
+  app.use((error, req, res, next) => {
+    res.status(error.status || 500);
+    res.json({
+      error: {
+        message: error.message
+      }
+    });
   });
 });
 
 //What app is using
 app.use(cors());
 app.use(express.json());
-app.use("/uploads", express.static("uploads"));
+app.use("/public", express.static("public"));
 
 const port = process.env.PORT || 5000;
 
