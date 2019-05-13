@@ -7,8 +7,12 @@ const getRecipes = require("./routes/getRecipes");
 require("dotenv/config");
 
 //Connect to DB
+<<<<<<< HEAD
 const DB_URI = process.env.MLAB_DB_CONNECTION;
 console.log(DB_URI);
+=======
+const DB_URI = "mongodb://<username>:<password>@ds239206.mlab.com:39206/grilldb";
+>>>>>>> 49485e30e745294c85eb800e2254392a39d92bd1
 const DB_URI_LOCAL = "mongodb://localhost:27017/grillDB";
 mongoose.connect(DB_URI_LOCAL, {
   useNewUrlParser: true
