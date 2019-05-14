@@ -10,7 +10,7 @@ require("dotenv/config");
 const DB_URI = process.env.MLAB_DB_CONNECTION;
 console.log(DB_URI);
 const DB_URI_LOCAL = "mongodb://localhost:27017/grillDB";
-mongoose.connect(DB_URI_LOCAL, {
+mongoose.connect(DB_URI, {
   useNewUrlParser: true
 });
 
