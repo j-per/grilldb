@@ -1,12 +1,31 @@
 import React, { Component } from "react";
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
-import { Container, Row, Col } from "react-bootstrap";
-import axios from "axios";
+import styled from "styled-components";
 
 import RecipeForm from "./components/RecipeForm";
 import RecentRecipes from "./components/RecentRecipes";
 import UserAccountInfo from "./components/UserAccountInfo";
+
+const GridContainer = styled.div`
+  display: grid;
+  padding: 50px;
+  grid-template-columns: repeat(10, 1fr);
+  grid-gap: 10px;
+
+  @media (max-width: 700px) {
+    grid-template-columns: initial;
+    padding: 10px;
+  }
+`;
+
+const FlexContainer = styled.div`
+  display: flex;
+  flex-direction: ${props => props.layout};
+`;
+
+const Span = styled.div`
+  grid-column: ${props => `${props.start} / ${props.end}`};
+  grid-row: ${props => props.row};
+`;
 
 const h1Style = {
   padding: "10px 0",
@@ -37,29 +56,20 @@ class App extends Component {
         <div className="wrapper">
           <header
             style={{
-              background: "#FF740A"
+              background: "#FF740A",
+              width: "100%"
             }}
             className="mb-5"
           >
             <h1 style={h1Style}>Grill DB</h1>
           </header>
-          <Row>
-            <Col lg={3} xs className="m-3" style={{ alignSelf: "flex-start" }}>
+          <GridContainer>
+            <FlexContainer layout="column">
               <UserAccountInfo />
-            </Col>
-            <Col lg={3} id="add-recipe" style={colStyle} className="p-3 m-2">
-              <RecipeForm />
-            </Col>
-            <Col
-              lg={3}
-              id="recent-recipes"
-              style={colStyle}
-              className="m-2 p-3"
-            >
-              <h3 style={h3Style}>Your Recent Recipes</h3>
               <RecentRecipes />
-            </Col>
-          </Row>
+            </FlexContainer>
+            <RecipeForm />
+          </GridContainer>
         </div>
       </div>
     );

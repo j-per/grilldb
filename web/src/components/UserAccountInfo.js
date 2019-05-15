@@ -1,66 +1,72 @@
 import React, { Component } from "react";
 import profile_image from "../images/jesse.jpg";
+import styled from "styled-components";
 
-const useraccountInfo_wrapper = {
-  display: "flex",
-  flexDirection: "column",
-  background: "#d9d9d9",
-  color: "white",
-  position: "relative",
-  color: "#312f30",
-  boxShadow: "3px 3px 5px #282828"
-};
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  background: #f7f6f5;
+  color: white;
+  position: relative;
+  color: #312f30;
+  box-sahdow: 3px 3px 5px #282828;
+  align-self: start;
+  width: 310px;
+`;
 
-const name_image_wrapper = {
-  display: "flex",
-  color: "#fff",
-  background: "#768493",
-  padding: "10px"
-};
+const NameImageWrapper = styled.div`
+  display: flex;
+  color: #fff;
+  background: #768493;
+  padding: 20px;
+`;
 
-const profile_image_style = {
-  width: "25%",
-  height: "25%",
-  border: "solid white 2px",
-  borderRadius: "50%",
-  marginRight: "1rem"
-};
+const ProfileImage = styled.img`
+  width: 80px;
+  height: 80px;
+  border: solid white 2px;
+  border-radius: 50%;
+  align-self: center;
+  margin-right: 1rem;
+`;
 
-const name_wrapper = {
-  display: "flex",
-  flexDirection: "column"
-};
+const NameWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+`;
 
-const recipe_setting_wrapper = {
-  display: "flex",
-  padding: "10px"
-};
+const RecipeSettingWrapper = styled.div`
+  display: flex;
+  padding: 10px;
+  border-bottom: 1rem solid #313030;
+`;
 
-const recipe_count_wrapper = {
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-  marginTop: "10px"
-};
+const RecipeCountWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10px;
+`;
 
 class UserAccountInfo extends Component {
   render() {
     return (
-      <div style={useraccountInfo_wrapper}>
-        <div style={name_image_wrapper}>
-          <img src={profile_image} style={profile_image_style} />
-          <div style={name_wrapper}>
+      <Wrapper>
+        <NameImageWrapper>
+          <ProfileImage src={profile_image} />
+          <NameWrapper>
             <h3>Jesse Perdue</h3>
             <p>@jesse_perdue</p>
-          </div>
-        </div>
-        <div style={recipe_setting_wrapper}>
-          <div style={recipe_count_wrapper}>
+          </NameWrapper>
+        </NameImageWrapper>
+        <RecipeSettingWrapper>
+          <RecipeCountWrapper>
             <h5>Recipes</h5>
             <h4>25</h4>
-          </div>
-        </div>
-      </div>
+          </RecipeCountWrapper>
+        </RecipeSettingWrapper>
+      </Wrapper>
     );
   }
 }

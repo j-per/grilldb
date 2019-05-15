@@ -1,14 +1,25 @@
 import React, { Component } from "react";
-import { Container, Row, Col, Button } from "react-bootstrap";
-import axios from "axios";
-import BBQ from "../images/1371591192937.jpeg";
+import { Button } from "react-bootstrap";
 import placeHolderImage from "../images/placeholder.png";
+import styled from "styled-components";
 
 const API_GET_URL = `http://localhost:5000/recentRecipes`;
 
-const cardStyle = {
-  display: "flex",
-  flexDirection: "column"
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  margin: 1 rem;
+  background: #f7f6f5;
+  box-sahdow: 3px 3px 5px #282828;
+  max-width: 310px;
+`;
+
+const h3Style = {
+  borderRadius: "5px",
+  color: "#FF740A",
+  textAlign: "center",
+  fontFamily: "Staatliches, cursive"
 };
 
 class RecentRecipes extends Component {
@@ -31,7 +42,8 @@ class RecentRecipes extends Component {
 
   render() {
     return (
-      <div className={cardStyle}>
+      <Wrapper>
+        <h3 style={h3Style}>Your Recent Recipes</h3>
         <h4>
           {this.state.recipeList[0]
             ? this.state.recipeList[0].recipeName
@@ -62,7 +74,7 @@ class RecentRecipes extends Component {
         />
         <br />
         <Button className="btn-warning my-3">View Recipe</Button>
-      </div>
+      </Wrapper>
     );
   }
 }

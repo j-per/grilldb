@@ -1,27 +1,26 @@
 import React, { Component } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import { Container, Row, Col } from "react-bootstrap";
 import axios from "axios";
+import styled from "styled-components";
 
 const API_URL = `http://localhost:5000/post`;
 
 //Styles
-const h1Style = {
-  padding: "10px 0",
-  margin: 0,
-  textAlign: "center",
-  fontFamily: "Staatliches, cursive",
-  fontSize: "50px",
-  borderBottom: "5px solid white"
-};
-
 const h3Style = {
   borderRadius: "5px",
   color: "#FF740A",
   textAlign: "center",
   fontFamily: "Staatliches, cursive"
 };
+
+const Wrapper = styled.div`
+  background-color: #f7f6f5;
+  padding: 1rem;
+  align-self: start;
+  box-sahdow: 3px 3px 5px #282828;
+  max-width: 310px;
+`;
 
 class RecipeForm extends Component {
   constructor() {
@@ -44,7 +43,6 @@ class RecipeForm extends Component {
 
   //Handle submit action
   handleSubmit(e) {
-    e.preventDefault();
     const fd = new FormData();
     const recipe = this.state;
     for (const key in recipe) {
@@ -101,7 +99,7 @@ class RecipeForm extends Component {
     ));
 
     return (
-      <div>
+      <Wrapper>
         <h3 style={h3Style} className="mb-3">
           Add Recipe
         </h3>
@@ -201,7 +199,7 @@ class RecipeForm extends Component {
             Submit
           </Button>
         </Form>
-      </div>
+      </Wrapper>
     );
   }
 }
