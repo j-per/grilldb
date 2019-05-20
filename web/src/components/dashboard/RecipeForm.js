@@ -19,7 +19,10 @@ const Wrapper = styled.div`
   padding: 1rem;
   align-self: start;
   box-sahdow: 3px 3px 5px #282828;
-  max-width: 310px;
+  width: 310px;
+  @media (max-width: 700px) {
+    width: 100%;
+  }
 `;
 
 class RecipeForm extends Component {

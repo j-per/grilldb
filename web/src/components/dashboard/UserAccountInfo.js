@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import profile_image from "../images/jesse.jpg";
+import profile_image from "../../images/jesse.jpg";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
@@ -12,6 +12,9 @@ const Wrapper = styled.div`
   box-sahdow: 3px 3px 5px #282828;
   align-self: start;
   width: 310px;
+  @media (max-width: 700px) {
+    width: 100%;
+  }
 `;
 
 const NameImageWrapper = styled.div`
@@ -40,6 +43,7 @@ const RecipeSettingWrapper = styled.div`
   display: flex;
   padding: 10px;
   border-bottom: 1rem solid #313030;
+  justify-content: space-between;
 `;
 
 const RecipeCountWrapper = styled.div`
@@ -64,6 +68,10 @@ class UserAccountInfo extends Component {
           <RecipeCountWrapper>
             <h5>Recipes</h5>
             <h4>25</h4>
+          </RecipeCountWrapper>
+          <RecipeCountWrapper>
+            <h5>Followers</h5>
+            <h4>234</h4>
           </RecipeCountWrapper>
         </RecipeSettingWrapper>
       </Wrapper>

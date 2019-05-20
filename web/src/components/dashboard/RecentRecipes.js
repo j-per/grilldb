@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Button } from "react-bootstrap";
-import placeHolderImage from "../images/placeholder.png";
+import placeHolderImage from "../../images/placeholder.png";
 import styled from "styled-components";
 
 const API_GET_URL = `http://localhost:5000/recentRecipes`;
@@ -12,7 +12,10 @@ const Wrapper = styled.div`
   margin: 1 rem;
   background: #f7f6f5;
   box-sahdow: 3px 3px 5px #282828;
-  max-width: 310px;
+  width: 310px;
+  @media (max-width: 700px) {
+    width: 100%;
+  }
 `;
 
 const h3Style = {
@@ -58,7 +61,7 @@ class RecentRecipes extends Component {
           width="100%"
         />
         <br />
-        <Button className="btn-warning my-3">View Recipe</Button>
+        <Button className="btn-warning my-1">View Recipe</Button>
         <h4>
           {this.state.recipeList[1]
             ? this.state.recipeList[1].recipeName
@@ -73,7 +76,7 @@ class RecentRecipes extends Component {
           width="100%"
         />
         <br />
-        <Button className="btn-warning my-3">View Recipe</Button>
+        <Button className="btn-warning my-1">View Recipe</Button>
       </Wrapper>
     );
   }
