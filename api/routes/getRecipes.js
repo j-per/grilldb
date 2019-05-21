@@ -13,7 +13,8 @@ router.get("/", (req, res, next) => {
           return {
             recipeName: recipe.recipeName,
             recipeCategory: recipe.category,
-            recipeImage: `http://localhost:5000/${recipe.recipeImage}`
+            recipeImage: `http://localhost:5000/${recipe.recipeImage}`,
+            recipeID: recipe._id
           };
         })
       };
