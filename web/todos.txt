@@ -1,0 +1,3 @@
+Allrecipes PAGE
+--Make each card clickable and direct to a new PAGE
+    -API needs to be able to accept on ID and return data about it

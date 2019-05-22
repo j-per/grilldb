@@ -11,8 +11,8 @@ const Wrapper = styled.div`
   color: #312f30;
   box-sahdow: 3px 3px 5px #282828;
   align-self: start;
-  width: 310px;
-  @media (max-width: 700px) {
+  width: 350px;
+  @media (max-width: 900px) {
     width: 100%;
   }
 `;
@@ -51,6 +51,9 @@ const RecipeCountWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   margin-top: 10px;
+  h4 {
+    color: #6f7d8a;
+  }
 `;
 
 class UserAccountInfo extends Component {

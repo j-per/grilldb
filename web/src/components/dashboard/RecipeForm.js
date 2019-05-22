@@ -4,7 +4,7 @@ import Button from "react-bootstrap/Button";
 import axios from "axios";
 import styled from "styled-components";
 
-const API_URL = `http://localhost:5000/post`;
+const API_URL = `http://localhost:5000/api/post`;
 
 //Styles
 const h3Style = {
@@ -19,8 +19,8 @@ const Wrapper = styled.div`
   padding: 1rem;
   align-self: start;
   box-sahdow: 3px 3px 5px #282828;
-  width: 310px;
-  @media (max-width: 700px) {
+  width: 350px;
+  @media (max-width: 900px) {
     width: 100%;
   }
 `;

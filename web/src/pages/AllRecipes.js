@@ -3,8 +3,9 @@ import styled from "styled-components";
 
 import MainHeader from "../components/MainHeader";
 import RecipeCard from "../components/allrecipes/RecipeCard";
+import PlaceHolderImage from "../images/placeholder.png";
 
-const URI = `http://localhost:5000/recentRecipes`;
+const URI = `http://localhost:5000/api/recentRecipes`;
 
 const Wrapper = styled.div`
   display: flex;
@@ -17,6 +18,7 @@ class AllRecipes extends React.Component {
     recipes: []
   };
 
+  //Fetch data from the server
   componentDidMount() {
     fetch(URI)
       .then(res => res.json())
@@ -46,12 +48,12 @@ class AllRecipes extends React.Component {
         <RecipeCard
           title={this.reduceTitle(recipe.recipeName)}
           user="@jesse_perdue"
-          image={recipe.recipeImage}
+          image={recipe.recipeImage || PlaceHolderImage}
           key={recipe.recipeID}
+          id={recipe.recipeID}
         />
       );
     });
-
     return (
       <div>
         <MainHeader />

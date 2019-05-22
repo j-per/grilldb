@@ -1,9 +1,10 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
 import placeHolderImage from "../../images/placeholder.png";
 import styled from "styled-components";
 
-const API_GET_URL = `http://localhost:5000/recentRecipes`;
+const API_GET_URL = `http://localhost:5000/api/recentRecipes`;
 
 const Wrapper = styled.div`
   display: flex;
@@ -12,8 +13,8 @@ const Wrapper = styled.div`
   margin: 1 rem;
   background: #f7f6f5;
   box-sahdow: 3px 3px 5px #282828;
-  width: 310px;
-  @media (max-width: 700px) {
+  width: 350px;
+  @media (max-width: 900px) {
     width: 100%;
   }
 `;
@@ -44,6 +45,7 @@ class RecentRecipes extends Component {
   }
 
   render() {
+    console.log(this.state);
     return (
       <Wrapper>
         <h3 style={h3Style}>Your Recent Recipes</h3>
@@ -61,7 +63,9 @@ class RecentRecipes extends Component {
           width="100%"
         />
         <br />
-        <Button className="btn-warning my-1">View Recipe</Button>
+        <Link to={`/allrecipes/recipedetails`}>
+          <Button className="btn-warning my-1">View Recipe</Button>
+        </Link>
         <h4>
           {this.state.recipeList[1]
             ? this.state.recipeList[1].recipeName

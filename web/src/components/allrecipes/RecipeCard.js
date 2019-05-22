@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const CardWrapper = styled.div`
   height: 264px;
@@ -54,7 +55,7 @@ const StyledButton = styled.button`
   }
 `;
 
-const RecipeCard = ({ image, title, user }) => (
+const RecipeCard = ({ image, title, user, id }) => (
   <div>
     <CardWrapper>
       <Image src={image} />
@@ -63,7 +64,9 @@ const RecipeCard = ({ image, title, user }) => (
           <StyledH4>{title}</StyledH4>
           <StyledP>{user}</StyledP>
         </TitleNameWrapper>
-        <StyledButton>View</StyledButton>
+        <Link to={`/allrecipes/recipedetails/${id}`}>
+          <StyledButton>View</StyledButton>
+        </Link>
       </InnerWrapper>
     </CardWrapper>
   </div>
