@@ -57,9 +57,6 @@ class AllRecipes extends React.Component {
     return (
       <div>
         <MainHeader />
-        <h1 style={{ textAlign: "center", color: "white" }}>
-          All Recipes page
-        </h1>
         <Wrapper>{recipeCardProps}</Wrapper>
       </div>
     );

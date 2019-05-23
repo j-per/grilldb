@@ -11,7 +11,6 @@ const Wrapper = styled.div`
 `;
 
 const StyledH1 = styled.h1`
-  color: white;
   text-align: center;
 `;
 
@@ -22,7 +21,6 @@ const Image = styled.img`
 `;
 
 const StyledP = styled.p`
-  color: white;
   text-align: center;
   font-size: 20px;
 `;

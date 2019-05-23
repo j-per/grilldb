@@ -11,8 +11,8 @@ const GridContainer = styled.div`
   display: grid;
   padding: 0 50px;
   grid-template-columns: repeat(10, 1fr);
-  grid-gap: 10px;
-
+  grid-gap: 1rem;
+  border-radius: 5px;
   @media (max-width: 700px) {
     grid-template-columns: initial;
     padding: 10px;
@@ -24,7 +24,7 @@ const FlexContainer = styled.div`
   flex-direction: ${props => props.layout};
 `;
 
-class App extends Component {
+class Dashboard extends Component {
   render() {
     return (
       <div className="wrapper">
@@ -41,4 +41,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default Dashboard;

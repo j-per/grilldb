@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
+import Button from "../Button";
 import axios from "axios";
 import styled from "styled-components";
 
@@ -9,17 +9,25 @@ const API_URL = `http://localhost:5000/api/post`;
 //Styles
 const h3Style = {
   borderRadius: "5px",
-  color: "#FF740A",
+  color: "#f9f6f1",
   textAlign: "center",
-  fontFamily: "Staatliches, cursive"
+  fontFamily: "Staatliches, cursive",
+  background: "#de3c31",
+  padding: "5px 15px",
+  textDecoration: "underline"
+};
+
+const formFontStyle = {
+  color: "#1f1f1f"
 };
 
 const Wrapper = styled.div`
-  background-color: #f7f6f5;
+  background-color: #f9f6f1;
   padding: 1rem;
   align-self: start;
   box-sahdow: 3px 3px 5px #282828;
   width: 350px;
+  border-radius: 5px;
   @media (max-width: 900px) {
     width: 100%;
   }
@@ -107,7 +115,9 @@ class RecipeForm extends Component {
           Add Recipe
         </h3>
         <Form onSubmit={this.handleSubmit} encType="multipart/form-data">
-          <Form.Label htmlFor="recipeName">Recipe Name:</Form.Label>
+          <Form.Label htmlFor="recipeName" style={formFontStyle}>
+            Recipe Name:
+          </Form.Label>
           <Form.Control
             name="recipeName"
             id="recipeName"
@@ -119,7 +129,9 @@ class RecipeForm extends Component {
             autoComplete="off"
             required
           />
-          <Form.Label htmlFor="category">Category:</Form.Label>
+          <Form.Label htmlFor="category" style={formFontStyle}>
+            Category:
+          </Form.Label>
           <Form.Control
             as="select"
             name="category"
@@ -135,7 +147,9 @@ class RecipeForm extends Component {
             <option value="fish">Fish</option>
             <option value="pork">Pork</option>
           </Form.Control>
-          <Form.Label htmlFor="grillType">Grill Type:</Form.Label>
+          <Form.Label htmlFor="grillType" style={formFontStyle}>
+            Grill Type:
+          </Form.Label>
           <Form.Control
             as="select"
             name="grillType"
@@ -151,7 +165,9 @@ class RecipeForm extends Component {
             <option value="charcoal">Charcoal</option>
             <option value="gas">Gas</option>
           </Form.Control>
-          <Form.Label htmlFor="time">Cook Time:</Form.Label>
+          <Form.Label htmlFor="time" style={formFontStyle}>
+            Cook Time:
+          </Form.Label>
           <Form.Control
             as="select"
             name="hours"
@@ -176,7 +192,9 @@ class RecipeForm extends Component {
             <option value="" default />
             {minutesOption}
           </Form.Control>
-          <Form.Label htmlFor="instructions">Instructions:</Form.Label>
+          <Form.Label htmlFor="instructions" style={formFontStyle}>
+            Instructions:
+          </Form.Label>
           <Form.Control
             as="textarea"
             name="instructions"
@@ -187,7 +205,9 @@ class RecipeForm extends Component {
             className="mb-3"
             required
           />
-          <Form.Label htmlFor="image">Image:</Form.Label>
+          <Form.Label htmlFor="image" style={formFontStyle}>
+            Image:
+          </Form.Label>
           <br />
           <input
             type="file"
@@ -196,6 +216,7 @@ class RecipeForm extends Component {
             onChange={this.handleChange}
             className="mb-3"
             required
+            style={formFontStyle}
           />
           <br />
           <Button type="submit" value="Submit" className="btn-warning">

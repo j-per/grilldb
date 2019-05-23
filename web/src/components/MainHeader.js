@@ -2,37 +2,43 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-const Header = styled.section`
-  padding: 25px 25px;
-  font-family: "Staatliches, cursive";
-  border-bottom: 5px solid white;
-  background: #ff740a;
+const Header = styled.header`
+  padding: 10px 50px;
+  margin: 1rem 0;
   width: 100%;
   display: flex;
-  margin-bottom: 1em;
   font-family: sans-serif;
   justify-content: space-between;
-  align-items: flex-end;
+  align-items: center;
+  h1 {
+    font-family: "Alfa Slab One", cursive;
+    margin: 0;
+    color: #f9f6f1;
+    background: rgba(223, 60, 49, 1);
+    padding: 5px 10px;
+    border-radius: 5px;
+  }
 `;
 
 const List = styled.ul`
   display: flex;
   list-style: none;
-  align-items: center;
-  justify-contene: center;
   font-size: 1em;
-
+  color: #f9f6f1;
+  margin: 0;
   li {
-    border-bottom: 2px solid transparent;
+    padding: 5px 10px;
+    transition: 350ms;
     &:hover {
-      color: #fff;
-      border-bottom: 2px solid black;
+      color: #f9f6f1;
+      background: rgba(223, 60, 49, 1);
+      border-radius: 5px;
     }
   }
 `;
 
 const StyledLink = styled(Link)`
-  color: #fff;
+  color: #f9f6f1;
   margin: 0 10px;
   &:hover {
     text-decoration: none;
@@ -41,7 +47,7 @@ const StyledLink = styled(Link)`
 
 const MainHeader = () => (
   <Header>
-    <h1>Grill DB</h1>
+    <h1>GRILL DB</h1>
     <List>
       <StyledLink to="/">
         <li>Home</li>

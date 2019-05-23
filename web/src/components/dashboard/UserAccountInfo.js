@@ -4,8 +4,10 @@ import styled from "styled-components";
 
 const Wrapper = styled.div`
   display: flex;
+  margin-bottom: 1rem;
+  border-radius: 5px;
   flex-direction: column;
-  background: #f7f6f5;
+  background: #f9f6f1;
   color: white;
   position: relative;
   color: #312f30;
@@ -22,6 +24,7 @@ const NameImageWrapper = styled.div`
   color: #fff;
   background: #768493;
   padding: 20px;
+  border-radius: 5px 5px 0 0;
 `;
 
 const ProfileImage = styled.img`
@@ -42,7 +45,6 @@ const NameWrapper = styled.div`
 const RecipeSettingWrapper = styled.div`
   display: flex;
   padding: 10px;
-  border-bottom: 1rem solid #313030;
   justify-content: space-between;
 `;
 

@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import Button from "../Button";
+import ProgressiveImage from "react-progressive-bg-image";
 
 const CardWrapper = styled.div`
   height: 264px;
@@ -9,9 +11,10 @@ const CardWrapper = styled.div`
   flex-direction: column;
   position: relative;
   background: #fff;
-  padding: 2px;
   margin: 1rem;
   overflow: hidden;
+  box-shadow: 0px 0px 7px 0px rgba(0, 0, 0, 0.75);
+  padding: 3px;
 `;
 
 const Image = styled.img`
@@ -65,7 +68,7 @@ const RecipeCard = ({ image, title, user, id }) => (
           <StyledP>{user}</StyledP>
         </TitleNameWrapper>
         <Link to={`/allrecipes/recipedetails/${id}`}>
-          <StyledButton>View</StyledButton>
+          <Button>View</Button>
         </Link>
       </InnerWrapper>
     </CardWrapper>

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { Button } from "react-bootstrap";
+import Button from "../Button";
 import placeHolderImage from "../../images/placeholder.png";
 import styled from "styled-components";
 
@@ -9,9 +9,10 @@ const API_GET_URL = `http://localhost:5000/api/recentRecipes`;
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
+  border-radius: 5px;
   padding: 1rem;
   margin: 1 rem;
-  background: #f7f6f5;
+  background: #f9f6f1;
   box-sahdow: 3px 3px 5px #282828;
   width: 350px;
   @media (max-width: 900px) {
@@ -21,9 +22,12 @@ const Wrapper = styled.div`
 
 const h3Style = {
   borderRadius: "5px",
-  color: "#FF740A",
+  color: "#f9f6f1",
   textAlign: "center",
-  fontFamily: "Staatliches, cursive"
+  fontFamily: "Staatliches, cursive",
+  background: "#de3c31",
+  padding: "5px 15px",
+  textDecoration: "underline"
 };
 
 class RecentRecipes extends Component {
@@ -41,19 +45,17 @@ class RecentRecipes extends Component {
     this.setState({
       recipeList: [lastRecipe, secondLastRecipe]
     });
-    console.log(this.state);
   }
 
   render() {
-    console.log(this.state);
     return (
       <Wrapper>
         <h3 style={h3Style}>Your Recent Recipes</h3>
-        <h4>
+        <h5>
           {this.state.recipeList[0]
             ? this.state.recipeList[0].recipeName
             : "No Recipe Available"}
-        </h4>
+        </h5>
         <img
           src={
             this.state.recipeList[0]
@@ -64,13 +66,13 @@ class RecentRecipes extends Component {
         />
         <br />
         <Link to={`/allrecipes/recipedetails`}>
-          <Button className="btn-warning my-1">View Recipe</Button>
+          <Button>View Recipe</Button>
         </Link>
-        <h4>
+        <h5>
           {this.state.recipeList[1]
             ? this.state.recipeList[1].recipeName
             : "No Recipe Available"}
-        </h4>
+        </h5>
         <img
           src={
             this.state.recipeList[1]
@@ -80,7 +82,9 @@ class RecentRecipes extends Component {
           width="100%"
         />
         <br />
-        <Button className="btn-warning my-1">View Recipe</Button>
+        <Link to={`/allrecipes/recipedetails`}>
+          <Button>View Recipe</Button>
+        </Link>
       </Wrapper>
     );
   }
