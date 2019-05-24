@@ -3,13 +3,12 @@ const cors = require("cors");
 const app = express();
 const mongoose = require("mongoose");
 const newRecipe = require("./routes/newRecipe");
-const getRecipes = require("./routes/getRecipes");
-const getRecipe = require("./routes/getRecipe");
+const allRecipes = require("./routes/allRecipes");
+const recipeDetails = require("./routes/recipeDetails");
 require("dotenv/config");
 
 //Connect to DB
 const DB_URI = process.env.MLAB_DB_CONNECTION;
-const DB_URI_LOCAL = "mongodb://localhost:27017/grillDB";
 mongoose.connect(DB_URI, {
   useNewUrlParser: true
 });
@@ -23,8 +22,8 @@ conn.once("open", function() {
   console.log("Connected to MLAB DB");
 
   app.use("/api/post", newRecipe);
-  app.use("/api/recentRecipes", getRecipes);
-  app.use("/api/allrecipes/recipedetails", getRecipe);
+  app.use("/api/allrecipes", allRecipes);
+  app.use("/api/allrecipes/recipedetails", recipeDetails);
 
   //Error handling for routes not declared
   app.use((req, res, next) => {

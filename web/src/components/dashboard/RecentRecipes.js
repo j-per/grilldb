@@ -4,7 +4,7 @@ import Button from "../Button";
 import placeHolderImage from "../../images/placeholder.png";
 import styled from "styled-components";
 
-const API_GET_URL = `http://localhost:5000/api/recentRecipes`;
+const API_GET_URL = `http://localhost:5000/api/allrecipes`;
 
 const Wrapper = styled.div`
   display: flex;

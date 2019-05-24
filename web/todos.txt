@@ -1,3 +1,13 @@
 Allrecipes PAGE
---Make each card clickable and direct to a new PAGE
-    -API needs to be able to accept on ID and return data about it
+    --Make each card clickable and direct to a new PAGE ✔️
+        -API needs to be able to accept on ID and return data about it ✔️
+
+    --Be able to delete recipes
+
+
+Dashboard
+    --Add new food category
+        -Other
+    --Preview image when uploading and be able to rotate it
+    --Be able to delete recent recipes
+    --Add hours and minutes to cook time

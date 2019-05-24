@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import Button from "../Button";
-import ProgressiveImage from "react-progressive-bg-image";
 
 const CardWrapper = styled.div`
   height: 264px;
@@ -14,7 +13,10 @@ const CardWrapper = styled.div`
   margin: 1rem;
   overflow: hidden;
   box-shadow: 0px 0px 7px 0px rgba(0, 0, 0, 0.75);
-  padding: 3px;
+  transition: 500ms;
+  &:hover {
+    transform: scale(1.05);
+  }
 `;
 
 const Image = styled.img`

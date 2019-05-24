@@ -5,7 +5,7 @@ import MainHeader from "../components/MainHeader";
 import RecipeCard from "../components/allrecipes/RecipeCard";
 import PlaceHolderImage from "../images/placeholder.png";
 
-const URI = `http://localhost:5000/api/recentRecipes`;
+const URI = `http://localhost:5000/api/allrecipes`;
 
 const Wrapper = styled.div`
   display: flex;

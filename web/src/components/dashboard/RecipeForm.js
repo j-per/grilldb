@@ -44,7 +44,8 @@ class RecipeForm extends Component {
       hours: "",
       minutes: "",
       instructions: "",
-      recipeImage: ""
+      recipeImage: "",
+      imageFile: null
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -96,6 +97,7 @@ class RecipeForm extends Component {
   }
 
   render() {
+    console.log(this.state);
     const hours = this.timeLoop(20);
     const hoursOption = hours.map(num => (
       <option value={num} key={num}>
