@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import Button from "../Button";
+import Button from "../elements/Button";
 import placeHolderImage from "../../images/placeholder.png";
 import styled from "styled-components";
 

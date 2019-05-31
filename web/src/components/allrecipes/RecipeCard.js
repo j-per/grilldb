@@ -1,8 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import Button from "../Button";
-
+import Button from "../elements/Button";
 const CardWrapper = styled.div`
   height: 264px;
   width: 312px;

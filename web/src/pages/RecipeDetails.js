@@ -22,7 +22,6 @@ const DirectionsWrapper = styled.div`
   margin: 3.5rem 1rem;
   width: 500px;
   height: auto;
-  border-radius: 5px;
 `;
 
 const StyledH1 = styled.h1`
@@ -37,7 +36,6 @@ const Image = styled.img`
   margin-bottom: 5em;
   object-fit: cover;
   border: 5px solid #f9f6f1;
-  border-radius: 5px;
 `;
 
 const StyledP = styled.p`

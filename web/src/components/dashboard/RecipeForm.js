@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Form from "react-bootstrap/Form";
-import Button from "../Button";
+import Button from "../elements/Button";
 import axios from "axios";
 import styled from "styled-components";
 
@@ -45,7 +45,7 @@ class RecipeForm extends Component {
       minutes: "",
       instructions: "",
       recipeImage: "",
-      imageFile: null
+      recipeImagePreview: null
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -78,7 +78,10 @@ class RecipeForm extends Component {
   handleChange(e) {
     switch (e.target.name) {
       case "recipeImage":
-        this.setState({ recipeImage: e.target.files[0] });
+        this.setState({
+          recipeImage: e.target.files[0],
+          recipeImagePreview: URL.createObjectURL(e.target.files[0])
+        });
         break;
       default:
         this.setState({
@@ -97,7 +100,7 @@ class RecipeForm extends Component {
   }
 
   render() {
-    console.log(this.state);
+    console.log(this.state.recipeImage);
     const hours = this.timeLoop(20);
     const hoursOption = hours.map(num => (
       <option value={num} key={num}>
@@ -219,6 +222,11 @@ class RecipeForm extends Component {
             className="mb-3"
             required
             style={formFontStyle}
+          />
+          <img
+            src={this.state.recipeImagePreview}
+            width="100%"
+            className="mb-3"
           />
           <br />
           <Button type="submit" value="Submit" className="btn-warning">
